@@ -1,0 +1,229 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  <link href="css/style.css" rel="stylesheet">
+  <link rel="icon" href="favicon.svg">
+  <title>Bank Simulator</title>
+</head>
+
+<body class="d-flex flex-column h-100">
+
+  <!-- Module: Log in -->
+  <div class="m-login w-100 m-auto text-center">
+    <form>
+      <img class="mb-3" src="img/logo.svg" alt="Logo" width="50" height="50">
+      <p class="m-login__msg text-light"><small>Please enter your credentials</small></p>
+      <div class="form-floating">
+        <input type="text" data-bs-toggle="tooltip" data-bs-title="maria, john or robert for this programming exercise" class="m-login__username form-control" placeholder="Username" maxlength="6" minlength="4">
+        <label for="floatingInput">Username</label>
+      </div>
+      <div class="form-floating">
+        <input type="password" data-bs-toggle="tooltip" data-bs-title="1234 for this programming exercise" class="m-login__password form-control" placeholder="Password" maxlength="4" minlength="4">
+        <label for="floatingPassword">Password</label>
+      </div>
+      <button class="m-login__send w-100 btn btn-lg btn-success" type="submit">Log in</button>
+      <p class="mt-5 mb-3"><small class="text-light">&copy; Bank Simulator</small></p>
+    </form>
+  </div>
+
+  <!-- Module: Dashboard -->
+  <div class="m-dashboard d-none">
+    <header>
+      <!-- Component: Navigation bar -->
+      <nav class="c-navbar navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+        <div class="container">
+          <a class="navbar-brand" href="#">
+            <img src="img/logo.svg" alt="Logo" width="30px" height="30px" class="d-inline-block align-text-top">
+            Bank Simulator
+          </a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse"
+            aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav ms-auto mb-2 mb-md-0">
+              <li class="nav-item">
+                <span class="nav-link text-light">Welcome, <em class="c-navbar__welcome"></em>!</span>
+              </li>
+              <li class="nav-item d-grid gap-1 d-md-block">
+                <button class="c-navbar__logout nav-link text-light btn btn-sm btn-success ms-md-2">Log out</button>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="flex-shrink-0">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-9">
+            <!-- Component: Movements -->
+            <div class="c-movements">
+              <h2 class="d-flex justify-content-between align-items-end">
+                <span class="text-light">Latest movements</span>
+                <small class="text-light fs-6 fw-normal">Automatic log out: <span class="c-movements__timeout"></span></small>
+              </h2>
+              <div class="c-movements__wrapper">
+                <div class="table-responsive">
+                  <table class="mt-2 table table-striped table-hover table-borderless text-center">
+                    <thead>
+                      <tr>
+                        <th scope="col">Type</th>
+                        <th scope="col">Amount</th>
+                        <th scope="col">Date and time</th>
+                      </tr>
+                    </thead>
+                    <tbody class="c-movements__body"></tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-3">
+            <!-- Component: Summary -->
+            <div class="c-summary mt-3 mt-lg-0">
+              <h4 class="d-flex justify-content-between align-items-center mb-3">
+                <span class="text-light">Summary</span>
+                <span class="badge rounded-pill bg-success c-summary__balance">0</span>
+              </h4>
+              <ul class="list-group">
+                <li class="pt-3 list-group-item d-flex justify-content-between lh-sm">
+                  <div>
+                    <h6 class="text-success">Deposits</h6>
+                    <small class="text-muted">The total of your deposits</small>
+                  </div>
+                  <span class="text-success c-summary__deposits">0</span>
+                </li>
+                <li class="list-group-item d-flex justify-content-between lh-sm">
+                  <div>
+                    <h6 class="my-0 text-danger">Withdrawals</h6>
+                    <small class="text-muted">The total of your withdrawals</small>
+                  </div>
+                  <span class="text-danger c-summary__withdrawals">0</span>
+                </li>
+                <li class="pb-3 list-group-item d-flex justify-content-between lh-sm">
+                  <div>
+                    <h6 class="my-0 text-muted">Interests</h6>
+                    <small class="text-muted"><span class="c-summary__interest-rate">0%</span> interest rate on deposits</small>
+                  </div>
+                  <span class="text-danger c-summary__interests">0</span>
+                </li>
+              </ul>
+            </div>
+
+            <!-- Component: Transfers -->
+            <div class="c-transfers mt-3">
+              <form class="b-box">
+                <h5 class="text-center">Transfer money</h5>
+                <div class="row g-2">
+                  <div class="col-sm-7">
+                    <input data-bs-toggle="tooltip" data-bs-title="maria, john or robert for this programming exercise" class="c-transfers__username form-control form-control-sm" type="text" placeholder="Recipient (user)" aria-label="Recipient (user)"  maxlength="6" minlength="4">
+                  </div>
+                  <div class="col-sm-5">
+                    <input class="c-transfers__amount form-control form-control-sm" type="number" placeholder="Amount" aria-label="Amount">
+                  </div>
+                  <div class="col-12">
+                    <button class="c-transfers__send w-100 text-light btn btn-sm btn-success" type="submit">Send money</button>
+                  </div>
+                </div>
+              </form>
+            </div>
+
+            <!-- Component: Request a loan -->
+            <div class="c-loan mt-3">
+              <form class="b-box">
+                <h5 class="text-center">Request a loan</h5>
+                <div class="row">
+                  <div class="col-12">
+                    <input class="c-loan__amount form-control form-control-sm" type="number" placeholder="Amount" aria-label="Amount">
+                  </div>
+                  <div class="col-12">
+                    <button class="c-loan__send w-100 text-light btn btn-sm btn-success mt-1" type="submit">Request</button>
+                  </div>
+                </div>
+              </form>
+            </div>
+
+            <!-- Component: Delete account -->
+            <div class="c-delete mt-3">
+              <form class="b-box">
+                <h5 class="text-center">Delete your account</h5>
+                <div class="row g-2">
+                  <div class="col-sm-7">
+                    <input data-bs-toggle="tooltip" data-bs-title="maria, john or robert for this programming exercise" class="c-delete__username form-control form-control-sm" type="text" placeholder="Username" aria-label="Username" maxlength="6" minlength="4">
+                  </div>
+                  <div class="col-sm-5">
+                    <input data-bs-toggle="tooltip" data-bs-title="1234 for this programming exercise" class="c-delete__password form-control form-control-sm" type="password" placeholder="Password" aria-label="Password" maxlength="4" minlength="4">
+                  </div>
+                  <div class="col-12">
+                    <button class="c-delete__send w-100 text-light btn btn-sm btn-danger" type="submit">Delete account</button>
+                  </div>
+                </div>
+              </form>
+            </div>
+            <!--Dist Component-->
+            <div class="c-distributions mt-3">
+              <form class="b-box">
+                <h5 class="text-center">Chi-Squared Distribution</h5>
+                <div class="row g-2">
+                  <div class="col-12">
+                    <script>document.write(normalcdf(30, 25, 1.4241));</script>
+                    <button class="c-cal__disCD w-100 text-light btn btn-sm btn-danger" type="submit">Calculate Distributions</button>
+                  </div>
+                </div>
+              </form>
+            </div>
+
+            
+            <div class="c-distributions1 mt-3">
+              <form class="b-box">
+                <h5 class="text-center">Poisson Distribution</h5>
+                <div class="row g-2">
+                  <div class="col-12">
+                    <script>document.write(normalcdf(30, 25, 1.4241));</script>
+                    <button class="c-cal__disCD1 w-100 text-light btn btn-sm btn-danger" type="submit">Calculate Poisson Distributions</button>
+                  </div>
+                </div>
+              </form>
+            </div>
+            
+            <div class="c-distributions2 mt-3">
+              <form class="b-box">
+                <h5 class="text-center">Exponential Distribution</h5>
+                <div class="row g-2">
+                  <div class="col-12">
+                    <script>document.write(normalcdf(30, 25, 1.4241));</script>
+                    <button class="c-cal__disCD2 w-100 text-light btn btn-sm btn-danger" type="submit">Calculate Exponential Distributions</button>
+                  </div>
+                </div>
+              </form>
+            </div
+
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <footer class="footer mt-auto py-3 text-center">
+      <div class="container">
+        <span><small class="text-light">&copy; Bank Simulator</small></span>
+      </div>
+    </footer>
+  </div>
+
+  <!-- JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+    crossorigin="anonymous"></script>
+  <script src="js/dummy-data.js"></script>
+  <script src="js/script.js"></script>
+</body>
+
+</html>

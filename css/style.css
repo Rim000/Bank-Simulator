@@ -1,0 +1,62 @@
+html,
+body {
+  height: 100%;
+}
+
+body {
+  background: #8b39a0;
+  background: linear-gradient(-45deg, #8b39a0, #b03860);
+}
+
+/* ================== Modules ================== */
+
+/* Log in */
+.m-login {
+  max-width: 330px;
+  padding: 40px 15px;
+}
+
+.m-login .form-control:focus {
+  color: #252525;
+  border-color: #489d68;
+  box-shadow: 0 0 0 0.25rem rgba(13, 253, 45, 0.444);
+}
+
+.m-login .form-floating:focus-within {
+  z-index: 2;
+}
+
+.m-login input[type='text'] {
+  margin-bottom: -1px;
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+}
+
+.m-login input[type='password'] {
+  margin-bottom: 10px;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
+
+/* Dashboard */
+.m-dashboard {
+  padding-top: 90px;
+}
+
+/* ================== Components ================== */
+
+/* Movements */
+.c-movements__wrapper {
+  background-color: #ffffff;
+  border-radius: 4px;
+}
+
+/* ================== Basics ================== */
+
+/* Box */
+.b-box {
+  background-color: #ffffff;
+  border-radius: 4px;
+  padding: 10px;
+  padding-bottom: 15px;
+}
